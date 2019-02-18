@@ -10,11 +10,12 @@ const handleApiCall = (req, res, postgresDB) => {
 	  .returning('data')	
 	   .then(data => { 
 		clariKey = data[0].data.toString().trim(); 
+		console.log("test1: ",clariKey);
 		const app = new Clarifai.App({apiKey: clariKey});		 
 
 		app.models.predict(Clarifai.FACE_DETECT_MODEL, req.body.inputVal) 
-		.then(data => {
-			res.json(data);
+		.then(data2 => {
+			res.json(data2);
 		})
 		.catch(err => res.status(400).json('unable to work with API'))
 	   }) 
